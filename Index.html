@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLACT Care - Property, Lawn, Auto, Curb & Trash</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brandRed: '#dc2626',
+            brandDarkRed: '#991b1b',
+            brandBlack: '#0a0a0a',
+            brandGray: '#171717',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { background-color: #0a0a0a; color: #f5f5f5; font-family: system-ui, -apple-system, sans-serif; }
+    .glass-card { background: rgba(23, 23, 23, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(220, 38, 38, 0.2); }
+    .glass-card:hover { border-color: rgba(220, 38, 38, 0.6); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <!-- HEADER / NAV -->
+  <header class="sticky top-0 z-40 bg-black/90 backdrop-blur border-b border-brandRed/30 px-4 py-3">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl font-black text-brandRed tracking-widest">PLACT<span class="text-white text-lg font-normal"> Care</span></span>
+      </div>
+
+      <div class="flex items-center gap-4 text-sm font-semibold">
+        <a href="tel:9184704748" class="hidden sm:flex items-center gap-2 text-red-400 hover:text-red-300">
+          <i class="fa-solid fa-phone"></i> (918) 470-4748
+        </a>
+        <button id="langToggle" onclick="toggleLanguage()" class="px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-xs border border-zinc-700 flex items-center gap-2">
+          <i class="fa-solid fa-globe text-brandRed"></i> <span id="langLabel">Español</span>
+        </button>
+        <button onclick="openAdminLogin()" class="px-3 py-1.5 rounded-lg bg-brandRed/20 hover:bg-brandRed/30 text-brandRed text-xs border border-brandRed/50">
+          <i class="fa-solid fa-lock mr-1"></i> Admin
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="py-12 px-4 text-center bg-gradient-to-b from-brandRed/10 via-black to-black">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight" id="heroTitle">
+        Premium Residential <span class="text-brandRed">PLACT Care</span>
+      </h1>
+      <p class="text-zinc-400 text-lg max-w-2xl mx-auto" id="heroSubtitle">
+        Pool, Lawn, Auto, Curbside Valet, and Trash Bin Sanitizing in Krebs & surrounding areas.
+      </p>
+      
+      <div class="flex flex-wrap justify-center gap-4 pt-4 text-sm text-zinc-300">
+        <div class="bg-zinc-900/80 px-4 py-2 rounded-full border border-zinc-800 flex items-center gap-2">
+          <i class="fa-solid fa-money-bill-wave text-green-500"></i> <span id="paymentCash">Cash & Cash App Accepted</span>
+        </div>
+        <div class="bg-zinc-900/80 px-4 py-2 rounded-full border border-zinc-800 flex items-center gap-2">
+          <i class="fa-solid fa-at text-green-400"></i> Cash App Tag: <span class="text-white font-bold">$LoganLeflore</span>
+        </div>
+        <a href="tel:9184704748" class="bg-brandRed/20 px-4 py-2 rounded-full border border-brandRed/50 flex items-center gap-2 hover:bg-brandRed/30 text-red-200">
+          <i class="fa-solid fa-phone text-brandRed"></i> (918) 470-4748
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <main class="max-w-6xl mx-auto px-4 py-8 space-y-12">
+    <div>
+      <h2 class="text-2xl font-bold text-center mb-8" id="servicesHeading">Our Services & Pricing</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- P: POOL -->
+        <div class="glass-card p-6 rounded-2xl flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex justify-between items-start">
+              <span class="text-3xl font-black text-brandRed">P</span>
+              <span class="text-2xl font-bold text-white">$95</span>
+            </div>
+            <h3 class="text-xl font-bold" id="titlePool">Pool Care</h3>
+            <p class="text-sm text-zinc-400" id="descPool">Skimming, vacuuming, wall brushing, leaf clearing, and water surface detailing for a crystal-clear pool.</p>
+          </div>
+          <button onclick="openBookingWithService('pool')" class="w-full py-2.5 bg-brandRed hover:bg-red-700 font-semibold rounded-xl text-sm transition">
+            <span class="bookBtnText">Select Service</span>
+          </button>
+        </div>
+
+        <!-- L: LAWN -->
+        <div class="glass-card p-6 rounded-2xl flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex justify-between items-start">
+              <span class="text-3xl font-black text-brandRed">L</span>
+              <span class="text-2xl font-bold text-white">$75</span>
+            </div>
+            <h3 class="text-xl font-bold" id="titleLawn">Lawn Care</h3>
+            <p class="text-sm text-zinc-400" id="descLawn">Full yard mowing, precise edge trimming along driveways & walkways, and power blowing clean up.</p>
+          </div>
+          <button onclick="openBookingWithService('lawn')" class="w-full py-2.5 bg-brandRed hover:bg-red-700 font-semibold rounded-xl text-sm transition">
+            <span class="bookBtnText">Select Service</span>
+          </button>
+        </div>
+
+        <!-- A: AUTO -->
+        <div class="glass-card p-6 rounded-2xl flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex justify-between items-start">
+              <span class="text-3xl font-black text-brandRed">A</span>
+              <span class="text-2xl font-bold text-white">$150</span>
+            </div>
+            <h3 class="text-xl font-bold" id="titleAuto">Auto Detailing</h3>
+            <p class="text-sm text-zinc-400" id="descAuto">Exterior foam hand wash, dirt/mud scrub, tire shine, deep interior vacuuming, and wipe-down right in your driveway.</p>
+          </div>
+          <button onclick="openBookingWithService('auto')" class="w-full py-2.5 bg-brandRed hover:bg-red-700 font-semibold rounded-xl text-sm transition">
+            <span class="bookBtnText">Select Service</span>
+          </button>
+        </div>
+
+        <!-- C: CURBSIDE -->
+        <div class="glass-card p-6 rounded-2xl flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex justify-between items-start">
+              <span class="text-3xl font-black text-brandRed">C</span>
+              <span class="text-2xl font-bold text-white">$5</span>
+            </div>
+            <h3 class="text-xl font-bold" id="titleCurb">Curbside Trash Valet</h3>
+            <p class="text-sm text-zinc-400" id="descCurb">Never miss trash day again. We roll your trash and recycling bins out to the curb on pickup night and return them back.</p>
+          </div>
+          <button onclick="openBookingWithService('curb')" class="w-full py-2.5 bg-brandRed hover:bg-red-700 font-semibold rounded-xl text-sm transition">
+            <span class="bookBtnText">Select Service</span>
+          </button>
+        </div>
+
+        <!-- T: TRASH BIN -->
+        <div class="glass-card p-6 rounded-2xl flex flex-col justify-between space-y-4 md:col-span-2 lg:col-span-1">
+          <div class="space-y-2">
+            <div class="flex justify-between items-start">
+              <span class="text-3xl font-black text-brandRed">T</span>
+              <span class="text-2xl font-bold text-white">$15</span>
+            </div>
+            <h3 class="text-xl font-bold" id="titleTrash">Trash Bin Sanitizing</h3>
+            <p class="text-sm text-zinc-400" id="descTrash">High-pressure interior & exterior bin washing, eco-friendly disinfectant sanitizing, and deodorizing treatment.</p>
+          </div>
+          <button onclick="openBookingWithService('trash')" class="w-full py-2.5 bg-brandRed hover:bg-red-700 font-semibold rounded-xl text-sm transition">
+            <span class="bookBtnText">Select Service</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CALENDAR SECTION -->
+    <div class="glass-card p-6 rounded-2xl space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold" id="calTitle">Availability Calendar</h2>
+          <p class="text-xs text-zinc-400 mt-1" id="calInstruction">Click a Green day to schedule. Double-click any day to toggle Free / Booked status.</p>
+        </div>
+        <div class="flex items-center gap-4 text-xs">
+          <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> <span id="legFree">Free</span></div>
+          <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-red-600"></span> <span id="legBooked">Booked</span></div>
+          <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-zinc-800"></span> <span id="legPassed">Passed</span></div>
+        </div>
+      </div>
+
+      <!-- Calendar grid -->
+      <div id="calendarGrid" class="grid grid-cols-7 gap-2 text-center text-sm"></div>
+    </div>
+  </main>
+
+  <!-- BOOKING MODAL -->
+  <div id="bookingModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 max-w-lg w-full space-y-5 relative max-h-[90vh] overflow-y-auto">
+      
+      <!-- Modal Top Navigation / Back Button -->
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+        <button onclick="closeBookingModal()" class="text-zinc-400 hover:text-white text-xs font-semibold flex items-center gap-1.5 bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 rounded-lg border border-zinc-700">
+          <i class="fa-solid fa-arrow-left"></i> <span class="backBtnLabel">← Back / Volver</span>
+        </button>
+        <button onclick="closeBookingModal()" class="text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <h3 class="text-xl font-bold text-white" id="modalHeading">Book Your Appointment</h3>
+
+      <!-- Multi-Job Selection Checkboxes -->
+      <div class="space-y-2">
+        <label class="block text-xs font-semibold text-zinc-300" id="selectServicesLabel">Select Job(s) Required:</label>
+        <div class="grid grid-cols-1 gap-2 text-sm bg-zinc-950 p-3 rounded-xl border border-zinc-800">
+          <label class="flex items-center justify-between cursor-pointer p-1.5 hover:bg-zinc-900 rounded">
+            <span class="flex items-center gap-2"><input type="checkbox" value="pool" data-price="95" onchange="updateBookingTotal()" class="service-checkbox accent-red-600 w-4 h-4"> Pool Care</span>
+            <span class="text-zinc-400">$95</span>
+          </label>
+          <label class="flex items-center justify-between cursor-pointer p-1.5 hover:bg-zinc-900 rounded">
+            <span class="flex items-center gap-2"><input type="checkbox" value="lawn" data-price="75" onchange="updateBookingTotal()" class="service-checkbox accent-red-600 w-4 h-4"> Lawn Care</span>
+            <span class="text-zinc-400">$75</span>
+          </label>
+          <label class="flex items-center justify-between cursor-pointer p-1.5 hover:bg-zinc-900 rounded">
+            <span class="flex items-center gap-2"><input type="checkbox" value="auto" data-price="150" onchange="updateBookingTotal()" class="service-checkbox accent-red-600 w-4 h-4"> Auto Detailing</span>
+            <span class="text-zinc-400">$150</span>
+          </label>
+          <label class="flex items-center justify-between cursor-pointer p-1.5 hover:bg-zinc-900 rounded">
+            <span class="flex items-center gap-2"><input type="checkbox" value="curb" data-price="5" onchange="updateBookingTotal()" class="service-checkbox accent-red-600 w-4 h-4"> Curbside Trash Valet</span>
+            <span class="text-zinc-400">$5</span>
+          </label>
+          <label class="flex items-center justify-between cursor-pointer p-1.5 hover:bg-zinc-900 rounded">
+            <span class="flex items-center gap-2"><input type="checkbox" value="trash" data-price="15" onchange="updateBookingTotal()" class="service-checkbox accent-red-600 w-4 h-4"> Trash Bin Sanitizing</span>
+            <span class="text-zinc-400">$15</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Customer Details Form -->
+      <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs text-zinc-400 mb-1" id="lblDate">Selected Date</label>
+          <input type="text" id="bookingDate" readonly class="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-2.5 text-sm font-semibold text-brandRed">
+        </div>
+
+        <div>
+          <label class="block text-xs text-zinc-400 mb-1" id="lblName">Your Full Name</label>
+          <input type="text" id="custName" required placeholder="Logan Smith" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-2.5 text-sm text-white focus:border-brandRed outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs text-zinc-400 mb-1" id="lblPhone">Phone Number</label>
+          <input type="tel" id="custPhone" required placeholder="(918) 555-0199" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-2.5 text-sm text-white focus:border-brandRed outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs text-zinc-400 mb-1" id="lblAddress">Service Address</label>
+          <input type="text" id="custAddress" required placeholder="123 Main St, Krebs, OK" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-2.5 text-sm text-white focus:border-brandRed outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs text-zinc-400 mb-1" id="lblPayment">Payment Method</label>
+          <select id="custPayment" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-2.5 text-sm text-white focus:border-brandRed outline-none">
+            <option value="Cash">Cash on Delivery</option>
+            <option value="Cash App">Cash App ($LoganLeflore)</option>
+          </select>
+        </div>
+
+        <div class="flex justify-between items-center pt-2 border-t border-zinc-800">
+          <div>
+            <span class="text-xs text-zinc-400" id="lblEstimatedTotal">Estimated Total:</span>
+            <div class="text-2xl font-bold text-emerald-400" id="totalPriceDisplay">$0</div>
+          </div>
+          <button type="submit" class="px-6 py-2.5 bg-brandRed hover:bg-red-700 text-white font-bold rounded-xl text-sm">
+            <span id="btnConfirmBook">Confirm Booking</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN LOGIN MODAL -->
+  <div id="adminLoginModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 max-w-sm w-full space-y-4 relative">
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+        <button onclick="closeAdminLogin()" class="text-zinc-400 hover:text-white text-xs font-semibold flex items-center gap-1.5 bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 rounded-lg border border-zinc-700">
+          <i class="fa-solid fa-arrow-left"></i> <span class="backBtnLabel">← Back / Volver</span>
+        </button>
+        <button onclick="closeAdminLogin()" class="text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <h3 class="text-lg font-bold text-white text-center">Admin Portal Access</h3>
+      <p class="text-xs text-zinc-400 text-center">Enter owner password to view customer bookings.</p>
+      
+      <input type="password" id="adminPassInput" placeholder="Enter Admin Password" class="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-2.5 text-sm text-white focus:border-brandRed outline-none text-center tracking-widest">
+      
+      <button onclick="checkAdminPassword()" class="w-full py-2.5 bg-brandRed hover:bg-red-700 font-bold rounded-xl text-sm text-white">
+        Login
+      </button>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD MODAL -->
+  <div id="adminDashboardModal" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 max-w-3xl w-full space-y-6 relative max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-brandRed font-black">PLACT</span>
+          <span class="text-xs bg-brandRed/20 text-brandRed px-2 py-0.5 rounded border border-brandRed/40">Owner Dashboard</span>
+        </div>
+        <button onclick="closeAdminDashboard()" class="text-zinc-400 hover:text-white text-xs font-semibold flex items-center gap-1.5 bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 rounded-lg border border-zinc-700">
+          <i class="fa-solid fa-arrow-left"></i> <span class="backBtnLabel">← Back / Volver</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 text-center">
+        <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-800">
+          <span class="text-xs text-zinc-400">Total Bookings</span>
+          <div id="dashTotalCount" class="text-2xl font-bold text-white">0</div>
+        </div>
+        <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-800">
+          <span class="text-xs text-zinc-400">Est. Total Revenue</span>
+          <div id="dashTotalRevenue" class="text-2xl font-bold text-emerald-400">$0</div>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="text-sm font-bold text-zinc-300">Customer Appointments</h4>
+        <div id="bookingListContainer" class="space-y-2 max-h-60 overflow-y-auto">
+          <!-- Live bookings rendering -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-zinc-800 bg-black py-6 text-center text-xs text-zinc-500">
+    <div class="max-w-6xl mx-auto px-4 space-y-2">
+      <p>&copy; 2026 PLACT Care. Property, Lawn, Auto, Curbside Valet & Trash Bin Sanitizing.</p>
+      <p>Krebs, Oklahoma | Call / Text: <a href="tel:9184704748" class="text-zinc-300 underline">(918) 470-4748</a> | Cash & Cash App ($LoganLeflore)</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // State Data
+    let currentLang = 'en';
+    let bookedDates = {}; // Format: 'YYYY-MM-DD': [ { id, name, phone, address, services, total, payment } ]
+    let selectedDateStr = '';
+
+    const prices = { pool: 95, lawn: 75, auto: 150, curb: 5, trash: 15 };
+
+    // Translations Dictionary
+    const translations = {
+      en: {
+        langLabel: 'Español',
+        heroTitle: 'Premium Residential <span class="text-brandRed">PLACT Care</span>',
+        heroSubtitle: 'Pool, Lawn, Auto, Curbside Valet, and Trash Bin Sanitizing in Krebs & surrounding areas.',
+        paymentCash: 'Cash & Cash App Accepted',
+        servicesHeading: 'Our Services & Pricing',
+        titlePool: 'Pool Care',
+        descPool: 'Skimming, vacuuming, wall brushing, leaf clearing, and water surface detailing for a crystal-clear pool.',
+        titleLawn: 'Lawn Care',
+        descLawn: 'Full yard mowing, precise edge trimming along driveways & walkways, and power blowing clean up.',
+        titleAuto: 'Auto Detailing',
+        descAuto: 'Exterior foam hand wash, dirt/mud scrub, tire shine, deep interior vacuuming, and wipe-down right in your d
